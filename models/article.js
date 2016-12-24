@@ -44,19 +44,22 @@ module.exports.createArticle = function (article, callback) {
 };
 
 module.exports.updateArticle = function (id, data, callback) {
+    var title = data.title;
+    var body = data.body;
+    var category = data.category;
   Article.findById(id, function (err, article) {
      if (!article) {
          return next(new Error('Could not load article'));
      } else {
          console.log(article);
-         article.title = data.title;
-         article.body = data.body;
-         article.category = data.category;
+         article.title = title;
+         article.body = body;
+         article.category = category;
          article.save(callback);
      }
   });
 };
 
 module.exports.removeArticle = function (id, callback) {
-  Article.findById(id).remove(callback);
+  Article.find({_id:id}).remove(callback);
 };
