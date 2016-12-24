@@ -63,19 +63,15 @@ router.put('/', function (req, res, next) {
        if (err) {
            console.log(err);
        }
-        res.location('/articles');
-        res.redirect('/articles');
     });
 });
 
 router.delete('/:id', function (req, res, next) {
     var id = req.params.id;
-    Article.removeArticle(id).remove(function (err, article) {
+    Article.removeArticle(id, function (err, article) {
         if (err) {
             console.log(err);
         }
-        res.location('/articles');
-        res.redirect('/articles');
     });
 });
 
